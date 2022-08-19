@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhoneDirectory.Models
 {
-    public class Title
+    public class MyTitle
     {
         public int TitleID { get; set; }
         

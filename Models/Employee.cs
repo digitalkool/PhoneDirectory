@@ -2,11 +2,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhoneDirectory.Models
 {
+    public enum Title
+    {
+        VP, Director, AssistDirector, Manager, AssistManager, Supervisor, Employee
+
+    }
+
+
     public class Employee
     {
         public int EmployeeID { get; set; }
-
-        public string DepartmentID { get; set; }
+        public int DepartmentID { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name ="First Name")]
@@ -17,10 +23,10 @@ namespace PhoneDirectory.Models
         public string LastName { get; set; }
         
         [Display(Name ="Department")]
-        public ICollection<Department> Department { get; set; }
+        public Department Department { get; set; }
 
         [Display(Name ="Title")]
-        public int Title { get; set; }
+        public Title? Title { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name ="Email")]

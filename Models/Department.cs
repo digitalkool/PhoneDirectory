@@ -9,6 +9,6 @@ namespace PhoneDirectory.Models
         [Display(Name ="Department")]
         public string DepartmentName { get; set; }
 
-        public ICollection<Employee> Employees { get; set; }
+        //public ICollection<Employee> Employees { get; set; }
     }
 }

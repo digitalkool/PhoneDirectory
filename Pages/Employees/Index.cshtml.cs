@@ -25,7 +25,9 @@ namespace PhoneDirectory.Pages.Employees
         {
             if (_context.Employees != null)
             {
-                Employee = await _context.Employees.ToListAsync();
+                Employee = await _context.Employees
+                    .Include( d => d.Department)
+                    .ToListAsync();
                 
             }
         }
