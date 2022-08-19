@@ -36,6 +36,31 @@
                 "${workspaceFolder}/PhoneDirectory.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/PhoneDirectory.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "drop db",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "ef",
+                "database",
+                "drop",
+                "--force"
+            ],
+            "problemMatcher": "$msCompile"
         }
+
+
     ]
 }
