@@ -6,7 +6,28 @@
 }
 
 <h1>Index</h1>
-
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="hidden" name="SearchType" value="name"/>
+            <input type="text" name="SearchString" value="@Model.CurrentFilterName" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+        </p>
+    </div>
+</form>
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by phone or ext:
+            <input type="hidden" name="SearchType" value="phone"/>
+            <input type="text" name="SearchString" value="@Model.CurrentFilterPhone" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            
+        </p>
+    </div>
+</form>
+<a asp-page="./Index">Back to full List</a>
 <p>
     <a asp-page="Create">Create New</a>
 </p>
