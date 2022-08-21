@@ -50,6 +50,8 @@ namespace PhoneDirectory.Pages.Employees
                 
             }
 
+            employeesIQ = employeesIQ.OrderBy(s => s.LastName);
+
             Employee = await employeesIQ.AsNoTracking().ToListAsync();
                 
             return Page();
