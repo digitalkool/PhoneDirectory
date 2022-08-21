@@ -43,7 +43,10 @@ namespace PhoneDirectory.Pages
              if (!String.IsNullOrEmpty(searchString))
             {
                 employeesIQ = employeesIQ.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString));
-            }     
+            }
+
+                employeesIQ = employeesIQ.OrderBy( s => s.Title)
+                                        .ThenBy( s2 => s2.LastName);     
             
 
             /*if (!String.IsNullOrEmpty(searchString))
