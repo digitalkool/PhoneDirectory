@@ -4,7 +4,13 @@ namespace PhoneDirectory.Models
 {
     public enum Title
     {
-        VP, Director, AssistDirector, Manager, AssistManager, Supervisor, Employee
+        VP = 1,
+        Director = 2,
+        AssistDirector = 3,
+        Manager = 4,
+        AssistManager = 5,
+        Supervisor = 6,
+        Employee = 7
 
     }
 
