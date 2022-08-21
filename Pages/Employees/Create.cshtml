@@ -2,10 +2,10 @@
 @model PhoneDirectory.Pages.Employees.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add";
 }
 
-<h1>Create</h1>
+<h1>Add New</h1>
 
 <h4>Employee</h4>
 <hr />
@@ -25,7 +25,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="Employee.Department" class="control-label"></label>
-                <input asp-for="Employee.Department" class="form-control" />
+                <select asp-for="Employee.DepartmentID" class="form-control"
+                        asp-items="@Model.DepartmentNameSL">
+                        <option value="">-- Select Department --</option>
+                </select>
                 <span asp-validation-for="Employee.Department" class="text-danger"></span>
             </div>
             <div class="form-group">
