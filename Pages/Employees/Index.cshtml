@@ -2,11 +2,13 @@
 @model PhoneDirectory.Pages.Employees.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Personnel";
 }
 
-<h1>Index</h1>
-<form asp-page="./Index" method="get">
+<h1>Personnel</h1>
+<table>
+<tr><td>
+    <form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
             Find by name:
@@ -16,6 +18,7 @@
         </p>
     </div>
 </form>
+</td><td>
 <form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
@@ -27,9 +30,13 @@
         </p>
     </div>
 </form>
-<a asp-page="./Index">Back to full List</a>
+</td>
+<td><a asp-page="./Index">Back to full List</a>
+</td>
+</tr>
+</table>
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Add New Employee</a>
 </p>
 <table class="table">
     <thead>
