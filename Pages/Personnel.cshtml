@@ -12,17 +12,37 @@
 
 <h2>@Model.department</h2>
 
+<table>
+<tr><td>
 <form asp-page="./Personnel" method="get">
     <div class="form-actions no-color">
         <p>
             Find by name:
             <input type="hidden" name="id" value="@Model.CurrentDepartmentID"/>
-            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="hidden" name="searchType" value="name"/>
+            <input type="text" name="SearchString" value="@Model.CurrentFilterName" />
             <input type="submit" value="Search" class="btn btn-primary" /> |
             
         </p>
     </div>
 </form>
+</td><td>
+<form asp-page="./Personnel" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by phone:
+            <input type="hidden" name="id" value="@Model.CurrentDepartmentID"/>
+            <input type="hidden" name="searchType" value="phone"/>
+            <input type="text" name="SearchString" value="@Model.CurrentFilterPhone" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            
+        </p>
+    </div>
+</form>    
+</tr>
+</table>
+
+
 <div>| <a asp-page="./Index" >Departments</a> |</div>
 <table class="table">
     <thead>
@@ -96,4 +116,4 @@
 }
     </tbody>
 </table>
-<div>| <a asp-page="./Index" >Departments</a> |</div>
+<div>| <a asp-page="./Personnel" asp-route-id="@Model.CurrentDepartmentID">Back To Full List</a> |</div>

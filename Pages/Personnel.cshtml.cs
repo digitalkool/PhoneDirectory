@@ -15,7 +15,9 @@ namespace PhoneDirectory.Pages
         private readonly PhoneDirectory.Data.DirectoryContext _context;
         public string department;
 
-        public string CurrentFilter { get; set;}
+        public string CurrentFilterName { get; set;}
+
+        public string CurrentFilterPhone { get; set;}
         public int CurrentDepartmentID { get; set; } = 0;
 
         public Personnel(PhoneDirectory.Data.DirectoryContext context)
@@ -27,7 +29,7 @@ namespace PhoneDirectory.Pages
 
         public IList<Department> Departments { get;set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id, string searchString)
+        public async Task<IActionResult> OnGetAsync(int? id, string searchType, string searchString)
         {
             if (id == null)
             {
@@ -44,23 +46,28 @@ namespace PhoneDirectory.Pages
 
              if (!String.IsNullOrEmpty(searchString))
             {
-                employeesIQ = employeesIQ.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString));
+                switch (searchType)
+                {
+                    case "name":
+                    employeesIQ = employeesIQ.Where(s => s.LastName.Contains(searchString)
+                                                || s.FirstName.Contains(searchString));
+                    CurrentFilterName = searchString;
+                    break;
+                    case "phone":
+                    employeesIQ = employeesIQ.Where(s => s.Phone1.Contains(searchString)
+                                                || s.Phone2.Contains(searchString)
+                                                || s.Ext.Contains(searchString));
+                    CurrentFilterPhone = searchString;
+                    break;
+                    default:
+                        break;
+                } 
+
             }
 
                 employeesIQ = employeesIQ.OrderBy( s => s.Title)
                                         .ThenBy( s2 => s2.LastName);     
             
-
-            /*if (!String.IsNullOrEmpty(searchString))
-            {
-                employee = await _context.Employees
-                            .Include( d => d.Department)
-                            .Where( m => (m.DepartmentID == id) && (m.LastName.Contains(searchString) || m.FirstName.Contains(searchString)))
-                            .OrderBy( s => s.Title)
-                            .ThenBy( s2 => s2.LastName)
-                            .ToListAsync();
-            }*/
-
             if (employeesIQ == null)
             {
                 return NotFound();
@@ -80,25 +87,6 @@ namespace PhoneDirectory.Pages
            
             return Page();
         }
-
-        /*public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null || _context.Employees == null)
-            {
-                return NotFound();
-            }
-
-            var employee = await _context.Employees.FirstOrDefaultAsync(m => m.EmployeeID == id);
-
-            if (employee == null)
-            {
-                return NotFound();
-            }
-            else 
-            {
-                Employee = employee;
-            }
-            return Page();
-        }*/
+ 
     }
 }
