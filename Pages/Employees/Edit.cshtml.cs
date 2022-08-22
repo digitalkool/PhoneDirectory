@@ -15,6 +15,10 @@ namespace PhoneDirectory.Pages.Employees
     {
         private readonly PhoneDirectory.Data.DirectoryContext _context;
 
+        public SelectList DepartmentNameSL { get; set;}
+
+        public IEnumerable<SelectListItem> TitlesList {get; set;}
+
         public EditModel(PhoneDirectory.Data.DirectoryContext context)
         {
             _context = context;
@@ -35,6 +39,24 @@ namespace PhoneDirectory.Pages.Employees
             {
                 return NotFound();
             }
+            object selectedDepartment = employee.Department;
+
+            var departmentsIQ = from d in _context.Departments
+                                    orderby d.DepartmentName
+                                    select d;
+            DepartmentNameSL = new SelectList(departmentsIQ,
+                        "DepartmentID", "DepartmentName", selectedDepartment);
+
+            IEnumerable<Title> values = Enum.GetValues(typeof(Title)).Cast<Title>();                        
+
+            TitlesList = from v in values
+                        select new SelectListItem()
+                        {
+                            Text = v.ToString(),
+                            Value = v.ToString()
+                        };
+
+            
             Employee = employee;
             return Page();
         }

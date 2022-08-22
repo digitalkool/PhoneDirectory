@@ -14,11 +14,11 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Employee.EmployeeID" />
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Employee.DepartmentID" class="control-label"></label>
                 <input asp-for="Employee.DepartmentID" class="form-control" />
                 <span asp-validation-for="Employee.DepartmentID" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Employee.LastName" class="control-label"></label>
                 <input asp-for="Employee.LastName" class="form-control" />
@@ -31,12 +31,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="Employee.Department" class="control-label"></label>
-                <input asp-for="Employee.Department" class="form-control" />
+                <select asp-for="Employee.DepartmentID" class="form-control"
+                        asp-items="@Model.DepartmentNameSL">
+                        <option value="">-- Select Department --</option>
+                </select>
                 <span asp-validation-for="Employee.Department" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Employee.Title" class="control-label"></label>
-                <input asp-for="Employee.Title" class="form-control" />
+                <select asp-for="Employee.Title" class="form-control"
+                        asp-items="@Model.TitlesList">
+                        <option value="">-- Select Title --</option>
+                </select>
                 <span asp-validation-for="Employee.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
