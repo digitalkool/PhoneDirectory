@@ -25,6 +25,8 @@ namespace PhoneDirectory.Pages
 
         public IList<Employee> Employees { get;set; } = default!;
 
+        public IList<Department> Departments { get;set; } = default!;
+
         public async Task<IActionResult> OnGetAsync(int? id, string searchString)
         {
             if (id == null)
@@ -68,32 +70,14 @@ namespace PhoneDirectory.Pages
                 Employees = await employeesIQ.AsNoTracking().ToListAsync();
             }
 
-            
+            IQueryable<Department> departmentIQ = _context.Departments.Where( d => d.DepartmentID == CurrentDepartmentID);
+            if (departmentIQ != null)
+            {
+                Departments = await departmentIQ.AsNoTracking().ToListAsync();
+                department = Departments[0].DepartmentName;
+            }
 
-            switch (id)
-                {
-                    case 1:
-                        this.department = "Administration";
-                        break;
-                    case 2:
-                        this.department = "VP";
-                        break;
-                    case 3:
-                        this.department = "VP";
-                        break;
-                    case 4:
-                        this.department = "VP";
-                        break;
-                    case 5:
-                        this.department = "VP";
-                        break;
-                    case 6:
-                        this.department = "VP";
-                        break;
-                    default:
-                        this.department = "VP";
-                        break;
-                } 
+           
             return Page();
         }
 
