@@ -14,4 +14,4 @@ The application is a webapp developed using asp.net core 6 with razor pages.
 
 Copyright (c) Ruben Ordonez. All rights reserved.
 
-Licensed under the [MIT](https://github.com/microsoft/vscode/blob/main/LICENSE.txtlicense).
+Licensed under the [GPL v2 or later](https://www.gnu.org/licenses/gpl-2.0.txt).
